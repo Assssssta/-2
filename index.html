@@ -3,33 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-<!-- ===== ПРЕВЬЮ ДЛЯ TELEGRAM ===== -->
-<meta property="og:title" content="Приглашение на свадьбу | Анастасия &amp; Максим" />
-<meta property="og:description" content="15 августа 2026 | Приглашаем вас разделить с нами этот особенный день ❤️" />
-<meta property="og:image" content="https://i.ibb.co/WvFQRHNk/images-my-photo.jpg" />
-<meta property="og:url" content="https://assssssta.github.io/-2/" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-    
-    <!-- ===== PREVIEW ДЛЯ TELEGRAM / СОЦСЕТЕЙ ===== -->
-    <meta property="og:title" content="Приглашение на свадьбу | Анастасия &amp; Максим" />
-    <meta property="og:description" content="15 августа 2026 | Приглашаем вас разделить с нами этот особенный день ❤️" />
-    <meta property="og:image" content="https://i.ibb.co/WvFQRHNk/images-my-photo.jpg" />
-    <meta property="og:url" content="https://assssssta.github.io/wedding3/" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Приглашение на свадьбу | Анастасия &amp; Максим" />
-    <meta name="twitter:description" content="15 августа 2026 | Приглашаем вас разделить с нами этот особенный день ❤️" />
-    <meta name="twitter:image" content="https://i.ibb.co/WvFQRHNk/images-my-photo.jpg" />
-
     <title>Анастасия & Максим | Приглашение на свадьбу</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ===== ВЕСЬ ОСТАЛЬНОЙ CSS (без изменений) ===== */
+        /* ===== ВСЕ СТИЛИ (без изменений) ===== */
         :root {
             --blue: #7ec8e3;
             --pink: #f5a0b0;
@@ -49,7 +29,6 @@
             height: 100vh;
             width: 100vw;
         }
-        /* ===== ЗАСТАВКА С КОНВЕРТОМ ===== */
         #splash {
             position: fixed;
             top: 0;
@@ -192,7 +171,6 @@
             0%, 100% { transform: translateY(0); opacity: 0.4; }
             50% { transform: translateY(8px); opacity: 0.8; }
         }
-        /* ===== ОСНОВНОЙ САЙТ ===== */
         #main-site {
             position: fixed;
             top: 0;
@@ -222,7 +200,6 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        /* ===== ГЕРОЙ ===== */
         .hero {
             position: relative;
             border-radius: 20px;
@@ -299,7 +276,6 @@
             font-weight: 300;
             margin-top: 2px;
         }
-        /* ===== ОСТАЛЬНЫЕ СТИЛИ ===== */
         h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: 1px; }
         .divider-light { background: #d4c5b2; }
         .intro { text-align: center; padding: 15px 0 5px; position: relative; z-index: 1; }
@@ -566,18 +542,20 @@
                 </div>
             </div>
 
-            <!-- МУЗЫКА -->
+            <!-- МУЗЫКА (работает в Safari) -->
             <div class="music-section">
-                <iframe 
-                    id="musicIframe"
-                    width="100%" 
-                    height="120" 
-                    scrolling="no" 
-                    frameborder="no" 
-                    allow="autoplay" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/h3rjfacolnud/jalen_santoy-foreplay_57694324&color=%23e8c97a&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
-                </iframe>
-                <div class="track-name">🎵 Jalen Santoy — Foreplay</div>
+                <div id="soundcloudPlayer" style="display:none; margin-top:10px;">
+                    <iframe 
+                        id="musicIframe"
+                        width="100%" 
+                        height="120" 
+                        scrolling="no" 
+                        frameborder="no" 
+                        allow="autoplay" 
+                        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/h3rjfacolnud/jalen_santoy-foreplay_57694324&color=%23e8c97a&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
+                    </iframe>
+                    <div class="track-name">🎵 Jalen Santoy — Foreplay</div>
+                </div>
             </div>
 
             <!-- ФУТЕР -->
@@ -617,7 +595,7 @@
             }
         })();
 
-        // ===== ОТКРЫТИЕ КОНВЕРТА =====
+        // ===== ОТКРЫТИЕ КОНВЕРТА (С МУЗЫКОЙ ДЛЯ SAFARI) =====
         let isOpened = false;
 
         function openEnvelope() {
@@ -627,17 +605,22 @@
             const envelope = document.getElementById('envelope3d');
             envelope.classList.add('open');
 
+            // ЗАПУСКАЕМ МУЗЫКУ СРАЗУ (в момент клика)
+            const iframe = document.getElementById('musicIframe');
+            if (iframe) {
+                // Показываем плеер
+                document.getElementById('soundcloudPlayer').style.display = 'block';
+                // Перезагружаем iframe с автостартом
+                const src = iframe.src;
+                iframe.src = src;
+            }
+
             setTimeout(() => {
                 document.getElementById('splash').classList.add('hidden');
             }, 500);
 
             setTimeout(() => {
                 document.getElementById('main-site').classList.add('visible');
-                const iframe = document.getElementById('musicIframe');
-                if (iframe) {
-                    const src = iframe.src;
-                    iframe.src = src;
-                }
             }, 900);
         }
 

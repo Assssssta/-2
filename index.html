@@ -50,6 +50,7 @@
             align-items: center;
             justify-content: center;
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px;
         }
 
         #splash.hidden {
@@ -84,11 +85,13 @@
             z-index: 2;
             perspective: 1500px;
             cursor: pointer;
+            width: 100%;
+            max-width: 340px;
         }
 
         .envelope-3d {
-            width: 340px;
-            height: 240px;
+            width: 100%;
+            aspect-ratio: 340 / 240;
             position: relative;
             transform-style: preserve-3d;
             transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
@@ -107,8 +110,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px;
+            padding: 20px 15px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            text-align: center;
         }
 
         .envelope-front-side {
@@ -117,8 +121,8 @@
         }
 
         .envelope-front-side .seal {
-            font-size: 4rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 6px;
             animation: sealPulse 2.5s ease-in-out infinite;
         }
 
@@ -129,19 +133,19 @@
 
         .envelope-front-side .invite-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #b89878;
-            letter-spacing: 6px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 400;
         }
 
         .envelope-front-side .click-hint {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: #b8a898;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-top: 12px;
+            margin-top: 8px;
             font-weight: 300;
         }
 
@@ -149,49 +153,49 @@
             transform: rotateY(180deg);
             background: linear-gradient(145deg, #f5f0eb, #ffffff);
             border: 2px solid rgba(201, 168, 124, 0.15);
+            padding: 15px 12px;
         }
 
         .envelope-back-side .names {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem;
+            font-size: 1.6rem;
             color: var(--text);
             font-weight: 600;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             line-height: 1.2;
-            text-align: center;
         }
 
         .envelope-back-side .names .ampersand {
             color: var(--gold);
             font-style: italic;
             font-weight: 400;
-            margin: 0 8px;
+            margin: 0 4px;
         }
 
         .envelope-back-side .sub-invite {
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             color: #8a7a6a;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin-top: 6px;
+            margin-top: 4px;
             font-weight: 300;
         }
 
         .envelope-back-side .date-preview {
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             color: #6a5a4a;
-            margin-top: 8px;
-            letter-spacing: 2px;
+            margin-top: 4px;
+            letter-spacing: 1px;
         }
 
         .hint-arrow {
             position: relative;
             z-index: 2;
-            margin-top: 25px;
+            margin-top: 15px;
             color: #c9b8a4;
-            font-size: 1.2rem;
+            font-size: 1rem;
             animation: bounceArrow 2s ease-in-out infinite;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             font-weight: 200;
         }
 
@@ -230,13 +234,13 @@
             -webkit-backdrop-filter: blur(16px);
             border-radius: 24px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            padding: 40px 35px 45px;
+            padding: 30px 20px 35px;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* ===== ГЕРОЙ: ФОТО ВЫТЯНУТОЕ + ТЕКСТ ПОВЕРХ ===== */
+        /* ===== ГЕРОЙ ===== */
         .hero {
             position: relative;
             border-radius: 20px;
@@ -247,7 +251,7 @@
 
         .hero-photo {
             width: 100%;
-            max-height: 600px; /* ← УВЕЛИЧИЛ ВЫСОТУ, ЧТОБЫ ФОТО БЫЛО ВЫТЯНУТЫМ */
+            max-height: 600px;
             object-fit: cover;
             display: block;
             transition: transform 0.3s ease;
@@ -271,34 +275,34 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px 25px;
+            padding: 20px 15px;
             text-align: center;
             color: #ffffff;
         }
 
         .hero-overlay .ornament {
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.6);
-            letter-spacing: 12px;
-            margin-bottom: 8px;
+            letter-spacing: 8px;
+            margin-bottom: 4px;
         }
 
         .hero-overlay .greeting {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.85);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             font-weight: 400;
             font-style: italic;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .hero-overlay h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4.2rem;
+            font-size: 3rem;
             font-weight: 700;
             color: #ffffff;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             line-height: 1.1;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
@@ -307,28 +311,28 @@
             font-style: italic;
             color: var(--gold);
             font-weight: 400;
-            margin: 0 10px;
+            margin: 0 6px;
             text-shadow: 0 4px 20px rgba(232, 201, 122, 0.3);
         }
 
         .hero-overlay .divider {
-            width: 60px;
+            width: 40px;
             height: 2px;
             background: var(--gold);
-            margin: 14px auto;
+            margin: 8px auto;
             border-radius: 2px;
         }
 
         .hero-overlay .subtitle {
-            font-size: 1.1rem;
+            font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 6px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 300;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
-        /* ===== ОБЩИЕ СТИЛИ ===== */
+        /* ===== ОСТАЛЬНЫЕ СТИЛИ ===== */
         h2, h3 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
@@ -339,68 +343,66 @@
             background: #d4c5b2;
         }
 
-        /* ===== ИНТРО ===== */
         .intro {
             text-align: center;
-            padding: 20px 0 10px;
+            padding: 15px 0 5px;
             position: relative;
             z-index: 1;
         }
 
         .intro p {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             color: #4a3f38;
             max-width: 600px;
-            margin: 0 auto 6px;
+            margin: 0 auto 4px;
             font-weight: 300;
             letter-spacing: 0.5px;
         }
 
         .intro .highlight {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--text);
             font-weight: 600;
             font-style: italic;
         }
 
-        /* ===== ТАЙМЕР ===== */
         .timer-section {
             text-align: center;
-            padding: 30px 0 20px;
+            padding: 20px 0 15px;
             position: relative;
             z-index: 1;
         }
 
         .timer-section .label {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #8a7a6a;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             font-weight: 400;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
 
         .timer {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .timer-item {
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(4px);
-            border-radius: 16px;
-            padding: 12px 18px;
-            min-width: 70px;
+            border-radius: 12px;
+            padding: 8px 14px;
+            min-width: 55px;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-            border-bottom: 3px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
         }
 
         .timer-item .number {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--text);
             line-height: 1;
@@ -408,84 +410,82 @@
         }
 
         .timer-item .unit {
-            font-size: 0.65rem;
+            font-size: 0.5rem;
             text-transform: uppercase;
             color: #8a7a6a;
-            letter-spacing: 2px;
-            margin-top: 4px;
+            letter-spacing: 1px;
+            margin-top: 2px;
             font-weight: 400;
         }
 
-        /* ===== ИНФО ===== */
         .info-section {
             text-align: center;
-            padding: 30px 0 20px;
+            padding: 20px 0 15px;
             position: relative;
             z-index: 1;
         }
 
         .info-section h2 {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--text);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .info-section .date {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: var(--text);
             font-weight: 600;
-            margin: 6px 0 4px;
+            margin: 4px 0 2px;
         }
 
         .info-section .time {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: #6a5a4a;
             font-weight: 300;
             letter-spacing: 2px;
         }
 
         .info-section .address {
-            margin-top: 12px;
-            font-size: 1rem;
+            margin-top: 8px;
+            font-size: 0.9rem;
             color: #4a3f38;
             font-weight: 300;
-            line-height: 1.8;
+            line-height: 1.6;
         }
 
         .info-section .address i {
             color: var(--gold);
-            margin-right: 6px;
-            width: 20px;
+            margin-right: 4px;
+            width: 18px;
         }
 
         .info-section .address .line {
             display: block;
         }
 
-        /* ===== КАРТА ===== */
         .map-wrapper {
             width: 100%;
             border-radius: 16px;
             overflow: hidden;
             border: 2px solid rgba(201, 168, 124, 0.15);
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .map-wrapper iframe,
         .map-wrapper script {
             display: block;
             width: 100% !important;
-            height: 260px !important;
+            height: 220px !important;
             border: none;
         }
 
         .map-link {
             display: inline-block;
-            margin-top: 12px;
+            margin-top: 8px;
             color: #6a5a4a;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             letter-spacing: 2px;
             transition: color 0.3s;
             border-bottom: 1px solid rgba(201, 168, 124, 0.2);
@@ -497,22 +497,21 @@
             border-bottom-color: var(--gold);
         }
 
-        /* ===== ДРЕСС-КОД ===== */
         .dresscode-section {
             text-align: center;
-            padding: 30px 0 20px;
+            padding: 20px 0 15px;
             position: relative;
             z-index: 1;
         }
 
         .dresscode-section h2 {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--text);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .dresscode-section .sub {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #6a5a4a;
             font-weight: 300;
             letter-spacing: 1px;
@@ -523,8 +522,8 @@
         .colors {
             display: flex;
             justify-content: center;
-            gap: 24px;
-            margin: 18px 0 8px;
+            gap: 16px;
+            margin: 12px 0 4px;
             flex-wrap: wrap;
         }
 
@@ -533,11 +532,11 @@
         }
 
         .color-dot {
-            width: 56px;
-            height: 56px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
             transition: transform 0.3s ease;
             margin: 0 auto;
         }
@@ -547,48 +546,47 @@
         }
 
         .color-label {
-            font-size: 0.75rem;
+            font-size: 0.6rem;
             color: #6a5a4a;
             letter-spacing: 1px;
-            margin-top: 6px;
+            margin-top: 4px;
             font-weight: 500;
         }
 
-        /* ===== ФОРМА ===== */
         .form-section {
             text-align: center;
-            padding: 30px 0 20px;
+            padding: 20px 0 15px;
             position: relative;
             z-index: 1;
         }
 
         .form-section h2 {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--text);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .form-section .form-sub {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: #6a5a4a;
             font-weight: 300;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
         }
 
         .form-group {
             max-width: 400px;
-            margin: 0 auto 14px;
+            margin: 0 auto 10px;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 14px 18px;
+            padding: 10px 14px;
             border: 1px solid rgba(201, 168, 124, 0.2);
-            border-radius: 12px;
+            border-radius: 10px;
             font-family: 'Raleway', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(4px);
             transition: all 0.3s ease;
@@ -597,7 +595,7 @@
         }
 
         .form-group textarea {
-            min-height: 80px;
+            min-height: 60px;
             resize: vertical;
         }
 
@@ -613,15 +611,15 @@
             background: var(--text);
             color: #fcf9f5;
             border: none;
-            padding: 14px 48px;
+            padding: 10px 36px;
             border-radius: 40px;
             font-family: 'Raleway', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
             letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .btn-submit:hover {
@@ -632,9 +630,9 @@
 
         .form-success {
             display: none;
-            padding: 20px 0;
+            padding: 15px 0;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: var(--green);
             font-style: italic;
         }
@@ -643,10 +641,9 @@
             display: block;
         }
 
-        /* ===== МУЗЫКА ===== */
         .music-section {
             text-align: center;
-            padding: 10px 0 10px;
+            padding: 10px 0 8px;
             position: relative;
             z-index: 1;
         }
@@ -659,41 +656,40 @@
         }
 
         .music-section .track-name {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: #8a7a6a;
             letter-spacing: 1px;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
-        /* ===== ФУТЕР ===== */
         .footer {
             text-align: center;
-            padding: 30px 0 5px;
+            padding: 20px 0 5px;
             border-top: 1px solid rgba(201, 168, 124, 0.15);
-            margin-top: 20px;
+            margin-top: 15px;
             position: relative;
             z-index: 1;
         }
 
         .footer .names {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: var(--text);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         .footer .names .ampersand {
             color: var(--gold);
             font-style: italic;
-            margin: 0 6px;
+            margin: 0 4px;
         }
 
         .footer .date {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #8a7a6a;
-            letter-spacing: 3px;
-            margin-top: 4px;
+            letter-spacing: 2px;
+            margin-top: 2px;
             font-weight: 300;
         }
 
@@ -708,13 +704,12 @@
             50% { transform: scale(1.15); }
         }
 
-        /* ===== СТРЕЛКА "ЛИСТАЙТЕ ВНИЗ" ===== */
         .scroll-hint {
             text-align: center;
-            padding: 20px 0 10px;
+            padding: 12px 0 5px;
             color: #b8a898;
-            font-size: 0.85rem;
-            letter-spacing: 4px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             font-weight: 300;
             animation: bounceArrow 2s ease-in-out infinite;
@@ -722,53 +717,49 @@
 
         .scroll-hint i {
             display: block;
-            font-size: 1.2rem;
-            margin-top: 4px;
+            font-size: 1rem;
+            margin-top: 2px;
             color: #c9b8a4;
         }
 
-        /* ===== АДАПТИВ ===== */
         @media (max-width: 768px) {
-            .container { padding: 25px 20px; }
-            .envelope-3d { width: 280px; height: 200px; }
-            .hero-overlay h1 { font-size: 3.2rem; }
+            .container { padding: 20px 16px; }
+            .envelope-container { max-width: 280px; }
+            .hero-overlay h1 { font-size: 2.4rem; }
             .hero-photo { max-height: 400px; }
-            .timer { gap: 12px; }
-            .timer-item { min-width: 60px; padding: 10px 14px; }
-            .timer-item .number { font-size: 2.4rem; }
-            .info-section .date { font-size: 1.6rem; }
-            .colors { gap: 16px; }
-            .color-dot { width: 48px; height: 48px; }
+            .timer-item { min-width: 50px; padding: 6px 10px; }
+            .timer-item .number { font-size: 1.8rem; }
+            .info-section .date { font-size: 1.4rem; }
+            .colors { gap: 12px; }
+            .color-dot { width: 38px; height: 38px; }
         }
 
         @media (max-width: 480px) {
-            .container { padding: 16px 14px; border-radius: 16px; }
-            .envelope-3d { width: 220px; height: 160px; }
-            .envelope-front-side .seal { font-size: 3rem; }
-            .envelope-front-side .invite-text { font-size: 0.9rem; letter-spacing: 3px; }
-            .envelope-back-side .names { font-size: 2rem; }
-            .hero-overlay h1 { font-size: 2.4rem; letter-spacing: 2px; }
-            .hero-overlay .greeting { font-size: 1rem; }
-            .hero-photo { max-height: 300px; }
-            .hero-overlay .subtitle { font-size: 0.8rem; letter-spacing: 4px; }
-            .intro p { font-size: 0.95rem; }
-            .timer-item { min-width: 50px; padding: 8px 10px; }
-            .timer-item .number { font-size: 1.8rem; }
-            .timer-item .unit { font-size: 0.55rem; }
-            .info-section h2 { font-size: 1.6rem; }
-            .info-section .date { font-size: 1.3rem; }
-            .dresscode-section h2 { font-size: 1.6rem; }
-            .form-section h2 { font-size: 1.6rem; }
-            .btn-submit { padding: 12px 32px; font-size: 0.9rem; width: 100%; }
-            .footer .names { font-size: 1.4rem; }
-            .colors { gap: 12px; }
-            .color-dot { width: 42px; height: 42px; }
-            .color-label { font-size: 0.65rem; }
-            .scroll-hint { font-size: 0.7rem; }
+            .container { padding: 14px 12px; border-radius: 16px; }
+            .envelope-container { max-width: 220px; }
+            .envelope-front-side .seal { font-size: 2.2rem; }
+            .envelope-front-side .invite-text { font-size: 0.8rem; letter-spacing: 2px; }
+            .envelope-back-side .names { font-size: 1.2rem; }
+            .hero-overlay h1 { font-size: 1.8rem; letter-spacing: 1px; }
+            .hero-overlay .greeting { font-size: 0.9rem; }
+            .hero-overlay .subtitle { font-size: 0.6rem; letter-spacing: 3px; }
+            .hero-photo { max-height: 280px; }
+            .intro p { font-size: 0.85rem; }
+            .timer-item { min-width: 42px; padding: 4px 8px; }
+            .timer-item .number { font-size: 1.4rem; }
+            .timer-item .unit { font-size: 0.45rem; }
+            .info-section h2 { font-size: 1.4rem; }
+            .info-section .date { font-size: 1.2rem; }
+            .dresscode-section h2 { font-size: 1.4rem; }
+            .form-section h2 { font-size: 1.4rem; }
+            .btn-submit { padding: 8px 24px; font-size: 0.8rem; width: 100%; }
+            .footer .names { font-size: 1.2rem; }
+            .colors { gap: 10px; }
+            .color-dot { width: 34px; height: 34px; }
+            .color-label { font-size: 0.5rem; }
+            .scroll-hint { font-size: 0.6rem; }
             .map-wrapper iframe,
-            .map-wrapper script {
-                height: 200px !important;
-            }
+            .map-wrapper script { height: 160px !important; }
         }
     </style>
 </head>
@@ -800,9 +791,10 @@
     <div id="main-site">
         <div class="container">
 
-            <!-- ГЕРОЙ: ФОТО ВЫТЯНУТОЕ + ТЕКСТ ПОВЕРХ -->
+            <!-- ГЕРОЙ: ФОТО + ТЕКСТ ПОВЕРХ -->
             <div class="hero">
-                <img src="images/my-photo.jpeg" alt="Анастасия & Максим" class="hero-photo" />
+                <!-- ВАШЕ ФОТО (ПРЯМАЯ ССЫЛКА) -->
+                <img src="https://s12nrg.storage.yandex.net/rdisk/c78d259a60f834aa8d735c8b20ae29e4a630064fe535858dcca2749cf0739c98/6a59587f/S-xVSF2upu3Q-Yr3DhDuOiLFacVoDSsSosKy-7qpe4e9EQ5vRicOHn6O18I666U5TvH6mVgBumQB8zRLI7FDyQ==?uid=568888628&filename=photo_2026-07-16%2021.16.37.jpeg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=568888628&fsize=156123&hid=39587a57745858f2c03c50a474086826&media_type=image&tknv=v3&is_direct_zip_experiment=1&etag=11ebb23fbcc40f7bc818cbe950083c71&ts=656c1ce97ddc0&s=dafcf528b2b57b5b7223ecfc0b7084d3160cb36ed80bc34e1451704fb149a61e&pb=U2FsdGVkX18bcz_a0NgJcAYEo7LE2-Y-31bixV5BD-VMOtQZi_YWjRtBqfYFX5fOSBHAWOGUAvMxfNW4_AX9ll1CTpVBUqmfgeSDLw1_Mfo" alt="Анастасия & Максим" class="hero-photo" />
                 <div class="hero-overlay">
                     <div class="ornament">✦ ✦ ✦</div>
                     <div class="greeting">Дорогие гости</div>
@@ -853,7 +845,7 @@
             <!-- ИНФОРМАЦИЯ -->
             <div class="info-section">
                 <h2>Когда и где</h2>
-                <div class="divider-light" style="width:60px;height:2px;background:#d4c5b2;margin:18px auto;border-radius:2px;"></div>
+                <div class="divider-light" style="width:40px;height:2px;background:#d4c5b2;margin:12px auto;border-radius:2px;"></div>
                 <div class="date">15 августа 2026</div>
                 <div class="time">Начало в 15:00</div>
                 <div class="address">
@@ -864,11 +856,11 @@
             </div>
 
             <!-- КАРТА -->
-            <div class="info-section" style="padding-top: 10px;">
+            <div class="info-section" style="padding-top: 8px;">
                 <div class="map-wrapper">
-                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac0fd83387a660b0971ad31c5f2b5044db62fa51cd01c8cc37824b9bd0711023f&amp;width=100%25&amp;height=260&amp;lang=ru_RU&amp;scroll=true"></script>
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac0fd83387a660b0971ad31c5f2b5044db62fa51cd01c8cc37824b9bd0711023f&amp;width=100%25&amp;height=220&amp;lang=ru_RU&amp;scroll=true"></script>
                 </div>
-                <div style="margin-top: 8px;">
+                <div style="margin-top: 6px;">
                     <a href="https://yandex.ru/maps/?um=constructor%3Ac0fd83387a660b0971ad31c5f2b5044db62fa51cd01c8cc37824b9bd0711023f&source=constructorLink" target="_blank" class="map-link">
                         <i class="fas fa-route"></i> Открыть в Яндекс.Картах
                     </a>
@@ -878,9 +870,9 @@
             <!-- ДРЕСС-КОД -->
             <div class="dresscode-section">
                 <h2>Цветовая гамма</h2>
-                <div class="divider-light" style="width:60px;height:2px;background:#d4c5b2;margin:18px auto;border-radius:2px;"></div>
+                <div class="divider-light" style="width:40px;height:2px;background:#d4c5b2;margin:12px auto;border-radius:2px;"></div>
                 <p class="sub">
-                    Мы будем рады, если в ваших нарядах появятся эти оттенки — они создадут особенное настроение и свяжут всех нас в единую праздничную картину.
+                    Мы будем рады, если в ваших нарядах появятся эти оттенки — они создадут особенное настроение.
                 </p>
                 <div class="colors">
                     <div class="color-item">
@@ -900,15 +892,15 @@
                         <div class="color-label">Зелёный</div>
                     </div>
                 </div>
-                <p class="sub" style="margin-top: 8px; font-size: 0.85rem;">
-                    Но самое главное для нас — ваше присутствие и хорошее настроение!
+                <p class="sub" style="margin-top: 6px; font-size: 0.75rem;">
+                    Но самое главное — ваше присутствие и хорошее настроение!
                 </p>
             </div>
 
             <!-- ФОРМА -->
             <div class="form-section">
                 <h2>Подтвердите присутствие</h2>
-                <div class="divider-light" style="width:60px;height:2px;background:#d4c5b2;margin:18px auto;border-radius:2px;"></div>
+                <div class="divider-light" style="width:40px;height:2px;background:#d4c5b2;margin:12px auto;border-radius:2px;"></div>
                 <p class="form-sub">Мы будем рады знать, что вы с нами!</p>
 
                 <form id="rsvpForm" onsubmit="sendToTelegram(event)">
@@ -935,14 +927,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea id="comment" placeholder="Ваши пожелания или комментарий (например, аллергия, особые предпочтения)"></textarea>
+                        <textarea id="comment" placeholder="Ваши пожелания или комментарий (например, аллергия)"></textarea>
                     </div>
                     <button type="submit" class="btn-submit">Отправить</button>
                 </form>
 
                 <div class="form-success" id="formSuccess">
                     <p>✨ Спасибо!</p>
-                    <p style="font-size: 0.95rem; font-family: 'Raleway', sans-serif; font-weight: 300; color: #6a5a4a; margin-top: 4px;">
+                    <p style="font-size: 0.8rem; font-family: 'Raleway', sans-serif; font-weight: 300; color: #6a5a4a; margin-top: 2px;">
                         Будем рады провести этот день вместе с вами
                     </p>
                 </div>
@@ -968,7 +960,7 @@
                     Анастасия <span class="ampersand">&amp;</span> Максим
                 </div>
                 <div class="date">15 августа 2026</div>
-                <div style="margin-top: 12px; font-size: 0.8rem; color: #b8a898; letter-spacing: 2px;">
+                <div style="margin-top: 8px; font-size: 0.7rem; color: #b8a898; letter-spacing: 2px;">
                     <span class="heart">♥</span> С нетерпением ждём вас! <span class="heart">♥</span>
                 </div>
             </div>
@@ -981,19 +973,19 @@
         (function createSplashParticles() {
             const container = document.getElementById('splash-particles');
             const colors = ['#7ec8e3', '#f5a0b0', '#f5d76e', '#8cd4b8', '#e8c97a'];
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < 30; i++) {
                 const p = document.createElement('div');
                 p.className = 'splash-particle';
-                const size = Math.random() * 80 + 20;
+                const size = Math.random() * 60 + 15;
                 p.style.width = size + 'px';
                 p.style.height = size + 'px';
                 p.style.background = colors[Math.floor(Math.random() * colors.length)];
                 p.style.left = Math.random() * 100 + '%';
                 p.style.top = Math.random() * 100 + '%';
-                p.style.setProperty('--dx', (Math.random() * 200 - 100) + 'px');
-                p.style.setProperty('--dy', (Math.random() * 200 - 100) + 'px');
-                p.style.animationDuration = (Math.random() * 25 + 15) + 's';
-                p.style.animationDelay = (Math.random() * 10) + 's';
+                p.style.setProperty('--dx', (Math.random() * 150 - 75) + 'px');
+                p.style.setProperty('--dy', (Math.random() * 150 - 75) + 'px');
+                p.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 8) + 's';
                 p.style.opacity = Math.random() * 0.3 + 0.1;
                 container.appendChild(p);
             }
@@ -1016,10 +1008,13 @@
             setTimeout(() => {
                 document.getElementById('main-site').classList.add('visible');
                 
-                // ЗАПУСКАЕМ МУЗЫКУ СРАЗУ ПОСЛЕ ОТКРЫТИЯ
+                // МУЗЫКА — ПРИНУДИТЕЛЬНЫЙ ЗАПУСК
                 const iframe = document.getElementById('musicIframe');
-                const src = iframe.src;
-                iframe.src = src;
+                if (iframe) {
+                    // Перезагружаем iframe с автостартом
+                    const src = iframe.src;
+                    iframe.src = src;
+                }
             }, 900);
         }
 

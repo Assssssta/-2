@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Приглашение на свадьбу | Анастасия & Максим</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0d0d0d;
+            color: #e8ddd0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* ===== ЭКРАН-ЗАСТАВКА С КОНВЕРТОМ ===== */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(ellipse at center, #1a1410 0%, #0a0806 100%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #splash.hidden {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        /* Фоновые частицы на заставке */
+        #splash-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .splash-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(180, 150, 120, 0.15);
+            animation: floatParticle 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+            100% { transform: translate(var(--dx), var(--dy)) scale(1.5); opacity: 0.4; }
+        }
+
+        /* Конверт на заставке */
+        .envelope-container {
+            position: relative;
+            z-index: 2;
+            perspective: 1500px;
+            cursor: pointer;
+        }
+
+        .envelope-3d {
+            width: 340px;
+            height: 240px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .envelope-3d:hover {
+            transform: scale(1.03);
+        }
+
+        .envelope-3d.open {
+            transform: rotateY(180deg) scale(1.02);
+        }
+
+        .envelope-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .envelope-front-side {
+            background: linear-gradient(160deg, #2a201a, #1a1410);
+            border: 1px solid rgba(180, 150, 120, 0.15);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+
+        .envelope-front-side .seal {
+            font-size: 3.5rem;
+            color: #b89878;
+            margin-bottom: 12px;
+            animation: sealPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes sealPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.08); opacity: 1; }
+        }
+
+        .envelope-front-side .invite-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: #b89878;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-top: 4px;
+        }
+
+        .envelope-front-side .click-hint {
+            font-size: 0.65rem;
+            color: #6a5a4a;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 12px;
+            font-weight: 300;
+        }
+
+        .envelope-back-side {
+            transform: rotateY(180deg);
+            background: linear-gradient(160deg, #1a1410, #2a201a);
+            border: 1px solid rgba(180, 150, 120, 0.1);
+        }
+
+        .envelope-back-side .names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            color: #e8ddd0;
+            font-weight: 300;
+            letter-spacing: 4px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .envelope-back-side .names .ampersand {
+            color: #b89878;
+            font-style: italic;
+            margin: 0 8px;
+        }
+
+        .envelope-back-side .sub-invite {
+            font-size: 0.75rem;
+            color: #8a7a6a;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 8px;
+            font-weight: 300;
+        }
+
+        .envelope-back-side .date-preview {
+            font-size: 0.85rem;
+            color: #6a5a4a;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* Стрелка-подсказка */
+        .hint-arrow {
+            position: relative;
+            z-index: 2;
+            margin-top: 25px;
+            color: #4a3a2a;
+            font-size: 1.2rem;
+            animation: bounceArrow 2s ease-in-out infinite;
+            letter-spacing: 4px;
+            font-weight: 200;
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(8px); opacity: 0.8; }
+        }
+
+        /* ===== ОСНОВНОЙ САЙТ (появляется после открытия конверта) ===== */
+        #main-site {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #0d0d0d;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px 20px 50px;
+            scroll-behavior: smooth;
+        }
+
+        #main-site.visible {
+            opacity: 1;
+        }
+
+        /* Стили основного сайта — взрослый, минималистичный */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Верхняя часть с именами */
+        .hero {
+            text-align: center;
+            padding: 20px 0 30px;
+            border-bottom: 1px solid rgba(180, 150, 120, 0.08);
+        }
+
+        .hero .ornament {
+            font-size: 1.4rem;
+            color: #5a4a3a;
+            letter-spacing: 12px;
+            margin-bottom: 8px;
+        }
+
+        .hero .main-date {
+            font-size: 0.8rem;
+            color: #6a5a4a;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.2rem;
+            font-weight: 300;
+            color: #e8ddd0;
+            letter-spacing: 6px;
+            line-height: 1.1;
+        }
+
+        .hero h1 .ampersand {
+            color: #b89878;
+            font-style: italic;
+            margin: 0 12px;
+        }
+
+        .hero .sub-line {
+            font-size: 0.85rem;
+            color: #6a5a4a;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-top: 8px;
+        }
+
+        .divider-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #5a4a3a, transparent);
+            margin: 20px auto;
+        }
+
+        /* Стеклянные карточки */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 30px 28px;
+            margin: 22px 0;
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.035);
+            border-color: rgba(180, 150, 120, 0.08);
+        }
+
+        .glass-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #e8ddd0;
+            text-align: center;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        .glass-card h3 .accent {
+            color: #b89878;
+        }
+
+        /* Инфо сетка */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 14px 10px;
+            background: rgba(255,255,255,0.015);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .info-item .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #5a4a3a;
+            font-weight: 400;
+        }
+
+        .info-item .value {
+            font-size: 1rem;
+            color: #e8ddd0;
+            font-weight: 300;
+            margin-top: 4px;
+        }
+
+        .info-item .value i {
+            color: #b89878;
+            margin-right: 6px;
+        }
+
+        .info-item.full {
+            grid-column: 1 / -1;
+        }
+
+        /* Фотографии */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            filter: grayscale(0.2);
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .photo-grid img:hover {
+            filter: grayscale(0);
+            transform: scale(1.02);
+            border-color: rgba(180, 150, 120, 0.2);
+        }
+
+        .photo-grid .main-photo {
+            grid-row: span 2;
+            height: 370px;
+        }
+
+        /* Музыка */
+        .music-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .music-controls button {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(180, 150, 120, 0.15);
+            color: #b89878;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-controls button:hover {
+            background: rgba(180, 150, 120, 0.08);
+            border-color: #b89878;
+            transform: scale(1.05);
+        }
+
+        .music-controls .track-name {
+            font-size: 0.85rem;
+            color: #6a5a4a;
+            letter-spacing: 2px;
+            font-weight: 300;
+            padding: 0 12px;
+        }
+
+        /* Карта */
+        #map {
+            width: 100%;
+            height: 220px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.04);
+            overflow: hidden;
+        }
+
+        .map-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: #6a5a4a;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            border-bottom: 1px solid rgba(180, 150, 120, 0.1);
+            padding-bottom: 2px;
+        }
+
+        .map-link:hover {
+            color: #b89878;
+            border-bottom-color: #b89878;
+        }
+
+        /* Футер */
+        .footer {
+            text-align: center;
+            padding: 30px 0 10px;
+            color: #3a2a1a;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            border-top: 1px solid rgba(255,255,255,0.02);
+            margin-top: 30px;
+        }
+
+        .footer .heart {
+            color: #5a4a3a;
+            display: inline-block;
+            animation: sealPulse 2s ease-in-out infinite;
+        }
+
+        /* Стиль скроллбара */
+        #main-site::-webkit-scrollbar {
+            width: 4px;
+        }
+        #main-site::-webkit-scrollbar-track {
+            background: #0d0d0d;
+        }
+        #main-site::-webkit-scrollbar-thumb {
+            background: #2a201a;
+            border-radius: 4px;
+        }
+
+        /* Адаптив */
+        @media (max-width: 768px) {
+            .envelope-3d {
+                width: 280px;
+                height: 200px;
+            }
+            .envelope-back-side .names {
+                font-size: 1.8rem;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .photo-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .photo-grid .main-photo {
+                grid-row: auto;
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .envelope-3d {
+                width: 220px;
+                height: 160px;
+            }
+            .envelope-front-side .seal {
+                font-size: 2.5rem;
+            }
+            .envelope-front-side .invite-text {
+                font-size: 0.8rem;
+                letter-spacing: 3px;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+                letter-spacing: 3px;
+            }
+            .hero h1 .ampersand {
+                margin: 0 6px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+            .glass-card {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== ЭКРАН-ЗАСТАВКА С КОНВЕРТОМ ===== -->
+    <div id="splash">
+        <!-- Фоновые частицы -->
+        <div id="splash-particles"></div>
+
+        <!-- 3D Конверт -->
+        <div class="envelope-container" onclick="openEnvelope()">
+            <div class="envelope-3d" id="envelope3d">
+                <div class="envelope-side envelope-front-side">
+                    <div class="seal">💌</div>
+                    <div class="invite-text">Приглашение</div>
+                    <div class="click-hint">нажмите, чтобы открыть</div>
+                </div>
+                <div class="envelope-side envelope-back-side">
+                    <div class="names">
+                        Анастасия <span class="ampersand">&</span> Максим
+                    </div>
+                    <div class="sub-invite">Приглашают на свадьбу</div>
+                    <div class="date-preview">15 августа 2026 · 15:00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hint-arrow">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <!-- ===== ОСНОВНОЙ САЙТ ===== -->
+    <div id="main-site">
+        <div class="main-content">
+
+            <!-- Hero -->
+            <div class="hero">
+                <div class="ornament">✦ ✦ ✦</div>
+                <div class="main-date">15 августа 2026</div>
+                <h1>
+                    Анастасия
+                    <span class="ampersand">&</span>
+                    Максим
+                </h1>
+                <div class="divider-line"></div>
+                <div class="sub-line">Приглашают на свадьбу</div>
+            </div>
+
+            <!-- Информация -->
+            <div class="glass-card">
+                <h3>Детали <span class="accent">праздника</span></h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="label">Дата</div>
+                        <div class="value"><i class="far fa-calendar-alt"></i> 15.08.2026</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Время</div>
+                        <div class="value"><i class="far fa-clock"></i> 15:00</div>
+                    </div>
+                    <div class="info-item full">
+                        <div class="label">Место</div>
+                        <div class="value"><i class="fas fa-map-pin"></i> ул. 3-й Пятилетки, 24, Рошаль</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Фотографии -->
+            <div class="glass-card">
+                <h3>Наши <span class="accent">моменты</span></h3>
+                <div class="photo-grid">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" alt="Фото пары" class="main-photo">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&q=80" alt="Фото 2">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&q=80" alt="Фото 3">
+                </div>
+            </div>
+
+            <!-- Музыка -->
+            <div class="glass-card">
+                <h3>Музыкальное <span class="accent">настроение</span></h3>
+                <div class="music-controls">
+                    <button id="playBtn"><i class="fas fa-play"></i></button>
+                    <button id="stopBtn"><i class="fas fa-stop"></i></button>
+                    <span class="track-name">🎵 The Hatters — Цианид</span>
+                </div>
+                <audio id="bgMusic" loop>
+                    <source src="https://dl.dropbox.com/s/abc123/the-hatters-cianid.mp3?dl=1" type="audio/mpeg">
+                </audio>
+                <p style="text-align:center;font-size:0.65rem;color:#3a2a1a;margin-top:12px;letter-spacing:2px;">
+                    <i class="fas fa-music"></i> Для прослушивания нажмите ▶
+                </p>
+            </div>
+
+            <!-- Карта -->
+            <div class="glass-card">
+                <h3>Как <span class="accent">нас найти</span></h3>
+                <div id="map"></div>
+                <div style="text-align:center;margin-top:12px;">
+                    <a href="https://yandex.ru/maps/?text=Рошаль, улица 3-й Пятилетки, 24" target="_blank" class="map-link">
+                        <i class="fas fa-route"></i> Открыть в Яндекс.Картах
+                    </a>
+                </div>
+            </div>
+
+            <!-- Футер -->
+            <div class="footer">
+                <span class="heart">♥</span> С нетерпением ждём вас! <span class="heart">♥</span>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // ===== Фоновые частицы для заставки =====
+        (function createSplashParticles() {
+            const container = document.getElementById('splash-particles');
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'splash-particle';
+                const size = Math.random() * 120 + 40;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.setProperty('--dx', (Math.random() * 200 - 100) + 'px');
+                p.style.setProperty('--dy', (Math.random() * 200 - 100) + 'px');
+                p.style.animationDuration = (Math.random() * 25 + 15) + 's';
+                p.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(p);
+            }
+        })();
+
+        // ===== Открытие конверта =====
+        let isOpened = false;
+
+        function openEnvelope() {
+            if (isOpened) return;
+            isOpened = true;
+
+            const envelope = document.getElementById('envelope3d');
+            envelope.classList.add('open');
+
+            // Плавно скрываем заставку
+            setTimeout(() => {
+                document.getElementById('splash').classList.add('hidden');
+            }, 500);
+
+            // Показываем основной сайт
+            setTimeout(() => {
+                document.getElementById('main-site').classList.add('visible');
+                // Автозапуск музыки (с учётом политики браузера)
+                const audio = document.getElementById('bgMusic');
+                audio.play().catch(() => {});
+                document.getElementById('playBtn').innerHTML = '<i class="fas fa-pause"></i>';
+                setTimeout(() => {
+                    document.getElementById('playBtn').innerHTML = '<i class="fas fa-play"></i>';
+                }, 200);
+            }, 900);
+        }
+
+        <!-- Музыкальный плеер SoundCloud -->
+<div class="glass-card">
+    <h3>Музыкальное <span class="accent">настроение</span></h3>
+    <div style="text-align:center; margin: 10px 0;">
+        <iframe
+            width="100%"
+            height="120"
+            scrolling="no"
+            frameborder="no"
+            allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/h3rjfacolnud/jalen_santoy-foreplay_57694324&color=%23b89878&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
+        </iframe>
+    </div>
+    <p style="text-align:center;font-size:0.65rem;color:#3a2a3a;margin-top:8px;letter-spacing:2px;">
+        <i class="fas fa-music"></i> Музыка начнётся автоматически
+    </p>
+</div>
+
+        // ===== Яндекс Карта =====
+        function initMap() {
+            try {
+                const map = new ymaps.Map("map", {
+                    center: [55.660, 39.870],
+                    zoom: 15,
+                    controls: ['zoomControl', 'fullscreenControl']
+                });
+                const placemark = new ymaps.Placemark([55.660, 39.870], {
+                    balloonContent: 'ул. 3-й Пятилетки, 24, Рошаль'
+                }, {
+                    preset: 'islands#redCircleIcon',
+                    iconColor: '#b89878'
+                });
+                map.geoObjects.add(placemark);
+            } catch (e) {
+                document.getElementById('map').innerHTML = '<p style="padding:20px;text-align:center;color:#4a3a2a;font-size:0.8rem;">Карта загружается...</p>';
+            }
+        }
+
+        if (typeof ymaps !== 'undefined' && ymaps.load) {
+            ymaps.load(initMap);
+        } else {
+            document.getElementById('map').innerHTML = `
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=39.870%2C55.660&z=15&text=Рошаль%2C%20улица%203-й%20Пятилетки%2C%2024" 
+                        width="100%" height="220" style="border-radius:8px; border:none;">
+                </iframe>
+            `;
+        }
+
+        // ===== Обработка клавиши Enter для открытия =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !isOpened) {
+                openEnvelope();
+            }
+        });
+    </script>
+</body>
+</html>
